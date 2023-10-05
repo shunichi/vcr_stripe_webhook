@@ -1,0 +1,375 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=test-user%40example.com&name=test-user
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/9.3.0
+      Authorization:
+      - Bearer <STRIPE_API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Stripe-Version:
+      - '2023-08-16'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.4 p208 (2022-04-12)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.1.44-1-MANJARO (builduser@fv-az616-74) (gcc (GCC) 13.2.1 20230801,
+        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Wed Aug  9 09:02:26 UTC
+        2023","hostname":"d1"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 05 Oct 2023 08:34:08 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '640'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET,HEAD,PUT,PATCH,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - report-uri /csp-report?p=%2Fv1%2Fcustomers;block-all-mixed-content;default-src
+        'none' 'report-sample';base-uri 'none';form-action 'none';style-src 'unsafe-inline';frame-ancestors
+        'self';connect-src 'self';img-src 'self' https://b.stripecdn.com
+      Content-Security-Policy-Report-Only:
+      - report-uri /csp-report?p=v1%2Fcustomers; block-all-mixed-content; default-src
+        'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; img-src
+        'self'; script-src 'self' 'report-sample'; style-src 'self'
+      Idempotency-Key:
+      - 4a2b0f6e-6a82-4880-acbd-b75539ad8de6
+      Original-Request:
+      - req_Fzkg2pu48BtNpb
+      Request-Id:
+      - req_Fzkg2pu48BtNpb
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - '2023-08-16'
+      Vary:
+      - Origin
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "cus_OlJdp1cFIpU1WC",
+          "object": "customer",
+          "address": null,
+          "balance": 0,
+          "created": 1696494848,
+          "currency": null,
+          "default_source": null,
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "test-user@example.com",
+          "invoice_prefix": "EC522BB8",
+          "invoice_settings": {
+            "custom_fields": null,
+            "default_payment_method": null,
+            "footer": null,
+            "rendering_options": null
+          },
+          "livemode": false,
+          "metadata": {},
+          "name": "test-user",
+          "next_invoice_sequence": 1,
+          "phone": null,
+          "preferred_locales": [],
+          "shipping": null,
+          "tax_exempt": "none",
+          "test_clock": null
+        }
+  recorded_at: Thu, 05 Oct 2023 08:34:08 GMT
+- request:
+    method: delete
+    uri: https://api.stripe.com/v1/customers/cus_OlJdp1cFIpU1WC
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/9.3.0
+      Authorization:
+      - Bearer <STRIPE_API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_Fzkg2pu48BtNpb","request_duration_ms":372}}'
+      Stripe-Version:
+      - '2023-08-16'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.4 p208 (2022-04-12)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.1.44-1-MANJARO (builduser@fv-az616-74) (gcc (GCC) 13.2.1 20230801,
+        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Wed Aug  9 09:02:26 UTC
+        2023","hostname":"d1"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 05 Oct 2023 08:34:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '75'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET,HEAD,PUT,PATCH,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - report-uri /csp-report?p=%2Fv1%2Fcustomers%2F%3Acustomer;block-all-mixed-content;default-src
+        'none' 'report-sample';base-uri 'none';form-action 'none';style-src 'unsafe-inline';frame-ancestors
+        'self';connect-src 'self';img-src 'self' https://b.stripecdn.com
+      Content-Security-Policy-Report-Only:
+      - report-uri /csp-report?p=v1%2Fcustomers%2F%3Acustomer; block-all-mixed-content;
+        default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'
+      Request-Id:
+      - req_aluwRcoQ7HLAvW
+      Stripe-Version:
+      - '2023-08-16'
+      Vary:
+      - Origin
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "cus_OlJdp1cFIpU1WC",
+          "object": "customer",
+          "deleted": true
+        }
+  recorded_at: Thu, 05 Oct 2023 08:34:09 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/test_helpers/test_clocks
+    body:
+      encoding: UTF-8
+      string: frozen_time=1696494849&name=vcr_sw_fence_1696494849_dpm8WvEPNOeQBW0O
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/9.3.0
+      Authorization:
+      - Bearer <STRIPE_API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_aluwRcoQ7HLAvW","request_duration_ms":357}}'
+      Stripe-Version:
+      - '2023-08-16'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.4 p208 (2022-04-12)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.1.44-1-MANJARO (builduser@fv-az616-74) (gcc (GCC) 13.2.1 20230801,
+        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Wed Aug  9 09:02:26 UTC
+        2023","hostname":"d1"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 05 Oct 2023 08:34:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '264'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET,HEAD,PUT,PATCH,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - report-uri /csp-report?p=%2Fv1%2Ftest_helpers%2Ftest_clocks;block-all-mixed-content;default-src
+        'none' 'report-sample';base-uri 'none';form-action 'none';style-src 'unsafe-inline';frame-ancestors
+        'self';connect-src 'self';img-src 'self' https://b.stripecdn.com
+      Content-Security-Policy-Report-Only:
+      - report-uri /csp-report?p=v1%2Ftest_helpers%2Ftest_clocks; block-all-mixed-content;
+        default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'
+      Expires:
+      - '0'
+      Idempotency-Key:
+      - dea8cdfc-c755-4c8c-97ae-97d890282cff
+      Original-Request:
+      - req_YT9ERoLzGnSaPh
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Request-Id:
+      - req_YT9ERoLzGnSaPh
+      Stripe-Should-Retry:
+      - 'false'
+      Stripe-Version:
+      - '2023-08-16'
+      Vary:
+      - Origin
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "clock_1Nxn0XGNdl6NdahfvRF0iaR4",
+          "object": "test_helpers.test_clock",
+          "created": 1696494849,
+          "deletes_after": 1699086849,
+          "frozen_time": 1696494849,
+          "livemode": false,
+          "name": "vcr_sw_fence_1696494849_dpm8WvEPNOeQBW0O",
+          "status": "ready"
+        }
+  recorded_at: Thu, 05 Oct 2023 08:34:09 GMT
+- request:
+    method: delete
+    uri: https://api.stripe.com/v1/test_helpers/test_clocks/clock_1Nxn0XGNdl6NdahfvRF0iaR4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/9.3.0
+      Authorization:
+      - Bearer <STRIPE_API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-Telemetry:
+      - '{"last_request_metrics":{"request_id":"req_YT9ERoLzGnSaPh","request_duration_ms":224}}'
+      Stripe-Version:
+      - '2023-08-16'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.4 p208 (2022-04-12)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.1.44-1-MANJARO (builduser@fv-az616-74) (gcc (GCC) 13.2.1 20230801,
+        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Wed Aug  9 09:02:26 UTC
+        2023","hostname":"d1"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 05 Oct 2023 08:34:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '102'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET,HEAD,PUT,PATCH,POST,DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Content-Security-Policy:
+      - report-uri /csp-report?p=%2Fv1%2Ftest_helpers%2Ftest_clocks%2F%3Atest_clock;block-all-mixed-content;default-src
+        'none' 'report-sample';base-uri 'none';form-action 'none';style-src 'unsafe-inline';frame-ancestors
+        'self';connect-src 'self';img-src 'self' https://b.stripecdn.com
+      Content-Security-Policy-Report-Only:
+      - report-uri /csp-report?p=v1%2Ftest_helpers%2Ftest_clocks%2F%3Atest_clock;
+        block-all-mixed-content; default-src 'none'; base-uri 'none'; form-action
+        'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample';
+        style-src 'self'
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Request-Id:
+      - req_Jkgft3OlJ5y3to
+      Stripe-Version:
+      - '2023-08-16'
+      Vary:
+      - Origin
+      X-Stripe-Routing-Context-Priority-Tier:
+      - api-testmode
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "id": "clock_1Nxn0XGNdl6NdahfvRF0iaR4",
+          "object": "test_helpers.test_clock",
+          "deleted": true
+        }
+  recorded_at: Thu, 05 Oct 2023 08:34:09 GMT
+recorded_with: VCR 6.2.0
