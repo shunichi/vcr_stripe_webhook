@@ -1,0 +1,97 @@
+---
+events:
+- type: customer.created
+  value:
+    id: evt_1O0mJZGNdl6NdahfOdapVsUG
+    object: event
+    api_version: '2023-08-16'
+    created: 1697207169
+    data:
+      object:
+        id: cus_OoP7pi3NtT0BIG
+        object: customer
+        address:
+        balance: 0
+        created: 1697207169
+        currency:
+        default_source:
+        delinquent: false
+        description:
+        discount:
+        email: test-user@example.com
+        invoice_prefix: 74131C35
+        invoice_settings:
+          custom_fields:
+          default_payment_method:
+          footer:
+          rendering_options:
+        livemode: false
+        metadata: {}
+        name: test-user
+        next_invoice_sequence: 1
+        phone:
+        preferred_locales: []
+        shipping:
+        tax_exempt: none
+        test_clock:
+    livemode: false
+    pending_webhooks: 2
+    request:
+      id: req_Zxw1i1BkbkLdEr
+      idempotency_key: 9c5ad2ca-be53-456e-bb62-a18fcdbc5183
+    type: customer.created
+- type: payment_method.attached
+  value:
+    id: evt_1O0mJaGNdl6NdahfWvKUoRSb
+    object: event
+    api_version: '2023-08-16'
+    created: 1697207170
+    data:
+      object:
+        id: pm_1O0mJZGNdl6Ndahfb1POWDhC
+        object: payment_method
+        billing_details:
+          address:
+            city:
+            country:
+            line1:
+            line2:
+            postal_code:
+            state:
+          email:
+          name:
+          phone:
+        card:
+          brand: visa
+          checks:
+            address_line1_check:
+            address_postal_code_check:
+            cvc_check: pass
+          country: US
+          exp_month: 10
+          exp_year: 2024
+          fingerprint: QevXzBJHDENmWdLD
+          funding: credit
+          generated_from:
+          last4: '4242'
+          networks:
+            available:
+            - visa
+            preferred:
+          three_d_secure_usage:
+            supported: true
+          wallet:
+        created: 1697207169
+        customer: cus_OoP7pi3NtT0BIG
+        livemode: false
+        metadata: {}
+        type: card
+    livemode: false
+    pending_webhooks: 2
+    request:
+      id: req_WJcLTBCnOm7fa0
+      idempotency_key: 7267e3e9-382d-461f-9587-8625b90a0b0d
+    type: payment_method.attached
+waits:
+- start: 0
+  end: 2

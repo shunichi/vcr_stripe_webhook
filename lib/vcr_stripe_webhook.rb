@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require "logger"
+require "set"
 require_relative "vcr_stripe_webhook/version"
 require_relative "vcr_stripe_webhook/configuration"
 require_relative "vcr_stripe_webhook/event_receiver"
 require_relative "vcr_stripe_webhook/event_cassette"
+require_relative "vcr_stripe_webhook/waiter"
 
 module VcrStripeWebhook
   class << self
@@ -33,11 +35,24 @@ module VcrStripeWebhook
       end
     end
 
-    def receive_webhook(event_type, timeout: configuration.timeout, &block)
+    def receive_webhook_events(event_types: nil, wait_until: nil, timeout: configuration.timeout, &block)
       raise "No event cassete inserted." if current_event_cassette.nil?
+      if event_types.nil? && wait_until.nil?
+        raise "event_types or wait_until must be passed as an argument."
+      end
 
-      event = current_event_cassette.wait_for_event(event_type, timeout: timeout, &block)
-      JSON.generate(event.value)
+      waiter =
+        if event_types
+          EventTypeWaiter.new(event_types)
+        else
+          ProcWaiter.new(wait_until)
+        end
+      current_event_cassette.wait_for_events(waiter, timeout: timeout, &block)
+    end
+
+    def receive_webhook_event(event_type, timeout: configuration.timeout, &block)
+      events = receive_webhook_events(event_types: [event_type], timeout: timeout, &block)
+      events.find { |event| event.type == event_type }
     end
   end
 end

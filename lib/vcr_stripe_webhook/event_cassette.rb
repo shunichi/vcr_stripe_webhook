@@ -3,6 +3,7 @@
 require "yaml"
 require "fileutils"
 require_relative "event"
+require_relative "error"
 
 module VcrStripeWebhook
   class EventCassette
@@ -30,17 +31,17 @@ module VcrStripeWebhook
       @recording
     end
 
-    def wait_for_event(event_type, timeout:, &block)
+    def wait_for_events(waiter, timeout:, &block)
       if recording?
-        record_and_wait_for_event(event_type, timeout: timeout, &block)
+        record_and_wait_for_events(waiter, timeout: timeout, &block)
       else
-        replay_and_wait_for_event(event_type, &block)
+        replay_and_wait_for_events(waiter, &block)
       end
     end
 
-    def receive_event_payload(event_payload)
+    def receive_event_payload(event)
       @mutex.synchronize do
-        @data.events.push(Event.new(event_payload["type"], event_payload))
+        @data.events.push(event)
       end
     end
 
@@ -50,50 +51,52 @@ module VcrStripeWebhook
 
     private
 
-    def record_and_wait_for_event(event_type, timeout:)
-      logger.info "Record and wait for: #{event_type}"
+    def record_and_wait_for_events(waiter, timeout:)
       wait_start = @data.events.size
 
       yield
 
       start_time = Time.now
       loop do
-        result_event = nil
+        finished = false
+        target_events = nil
         @mutex.synchronize do
           wait_end = @data.events.size
-          result_event = @data.events[wait_start...wait_end].find do |event|
-            event.type == event_type
-          end
-          @data.waits.push(Wait.new(wait_start, wait_end)) if result_event
+          target_events = @data.events[wait_start...wait_end]
+          finished = waiter.call(target_events)
+          @data.waits.push(Wait.new(wait_start, wait_end)) if finished
         end
 
-        return result_event if result_event
-        raise "No '#{event_type}' event received." if Time.now - start_time > timeout
+        return target_events if finished
+        if Time.now - start_time > timeout
+          message = waiter.timeout_message(target_events, recording: true)
+          raise EventWaitTimeout, message
+        end
 
         sleep 0.5
       end
     end
 
-    def replay_and_wait_for_event(event_type)
-      logger.info "Replay and wait for: #{event_type}"
+    def replay_and_wait_for_events(waiter)
       wait = @data.waits[@wait_counter]
       if wait.nil?
-        # TODO: 適切なメッセージ
-        raise "No wait data."
+        raise CassetteDataError, <<~ERROR_MESSAGE
+          receive_webhook_event(s) calls is more than the calls in the recorded data.
+          If you modify test code after recording, record real webhooks again.
+        ERROR_MESSAGE
       end
 
       yield
 
-      result_event = @data.events[wait.start...wait.end].find do |event|
-        event.type == event_type
-      end
-      if result_event.nil?
-        # TODO: 適切なメッセージ
-        raise "No event."
+      target_events = @data.events[wait.start...wait.end]
+      finished = waiter.call(target_events)
+      unless finished
+        message = waiter.timeout_message(target_events, recording: false)
+        raise raise CassetteDataError, message
       end
 
       @wait_counter += 1
-      result_event
+      target_events
     end
 
     def logger

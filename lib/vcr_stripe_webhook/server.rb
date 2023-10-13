@@ -44,11 +44,11 @@ module VcrStripeWebhook
         Thread.start(socket) do |s|
           request = RequestParser.new(s)
 
-          if request.json_value.nil?
-            s.write("HTTP/1.1 400\r\n\r\n")
-          else
-            @block&.call(request.json_value)
+          if request.json?
+            @block&.call(request.body)
             s.write("HTTP/1.1 204\r\n\r\n")
+          else
+            s.write("HTTP/1.1 400\r\n\r\n")
           end
         ensure
           s.close
@@ -65,7 +65,7 @@ module VcrStripeWebhook
     class RequestParser
       MAX_HEADER_LENGTH = 16 * 1024
 
-      attr_reader :method, :path, :headers
+      attr_reader :method, :path, :headers, :body
 
       def initialize(socket)
         @method, @path = read_start_line(socket)
@@ -90,11 +90,15 @@ module VcrStripeWebhook
         @content_type
       end
 
+      def json?
+        content_type == "application/json"
+      end
+
       def json_value
         return @json_value if defined?(@json_value)
 
         @json_value =
-          if content_type == "application/json"
+          if json?
             begin
               JSON.parse(@body)
             rescue StandardError

@@ -31,7 +31,7 @@ VcrStripeWebhook.use_cassette('create_customer') do |vcr_cassette|
   stripe_customer = nil
 
   # Get webhook payload from Stripe server or current cassette
-  webhook_payload_json = VcrStripeWebhook.receive_webhook('customer.created') do
+  webhook_event = VcrStripeWebhook.receive_webhook_event('customer.created') do
     customer_params = {
       email: 'test-user@example.com',
       name: 'test-user',
@@ -40,7 +40,7 @@ VcrStripeWebhook.use_cassette('create_customer') do |vcr_cassette|
   end
 
   # Call your webhook manually
-  post your_stripe_webhook_path, params: webhook_payload_json,
+  post your_stripe_webhook_path, params: webhook_event.as_json,
     headers: { 'Content-Type: application/json' }
 
   # Insert assertion here
