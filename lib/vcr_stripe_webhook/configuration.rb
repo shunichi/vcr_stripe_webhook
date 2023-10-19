@@ -16,7 +16,7 @@ module VcrStripeWebhook
     end
 
     def stripe_api_key
-      @stripe_api_key ||= ENV["VCR_STRIPE_WEBHOOK_API_KEY"]
+      @stripe_api_key ||= Stripe.api_key
     end
   end
 end

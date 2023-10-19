@@ -18,9 +18,8 @@ gem 'vcr_stripe_webhook', github: 'shunichi/vcr_stripe_webhook'
 ## Usage
 
 ```ruby
-# Set Stripe API key for test mode via configuration
-# or environment variable VCR_STRIPE_WEBHOOK_API_KEY.
-VcrStripeWebhook.configuration.stripe_api_key = 'sk_test_...'
+# Set Stripe API key for test mode
+Stripe.api_key = 'sk_test_...'
 ```
 
 Use `VcrStripeWebhook.use_cassette` instead of `VCR.use_cassette`.

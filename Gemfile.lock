@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vcr_stripe_webhook (0.1.0)
+    vcr_stripe_webhook (0.2.1)
       stripe (~> 9.0)
       vcr (~> 6.0)
 
@@ -15,6 +15,7 @@ GEM
     crack (0.4.5)
       rexml
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
     hashdiff (1.0.1)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
@@ -68,6 +69,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  dotenv
   rake
   rspec
   rubocop
@@ -77,4 +79,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.4.10
+   2.4.20
