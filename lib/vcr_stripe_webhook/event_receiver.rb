@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "json"
 require_relative "server"
 require_relative "stripe_cli"
 
@@ -34,8 +35,8 @@ module VcrStripeWebhook
       @last_fence_event_created = nil
 
       @cassette = nil
-      @server = VcrStripeWebhook::Server.new do |payload_hash|
-        receive_webhook(payload_hash)
+      @server = VcrStripeWebhook::Server.new do |payload|
+        receive_webhook(payload)
       end
       @cli = VcrStripeWebhook::StripeCLI.new(@server.port, api_key)
       @started = true
@@ -88,20 +89,21 @@ module VcrStripeWebhook
 
     private
 
-    def receive_webhook(payload_hash)
-      if @last_fence_event_created && payload_hash["created"] < @last_fence_event_created
-        logger.info "Ignore old event: #{payload_hash["type"]}"
+    def receive_webhook(payload)
+      event_hash = JSON.parse(payload)
+      if @last_fence_event_created && event_hash["created"] < @last_fence_event_created
+        logger.info "Ignore old event: #{event_hash["type"]}"
         return
       end
 
-      logger.info "Server received event: #{payload_hash["type"]} (cassette=#{@cassette&.name})"
-      @cassette&.receive_event_payload(payload_hash)
+      logger.info "Server received event: #{event_hash["type"]} (cassette=#{@cassette&.name})"
+      @cassette&.receive_event_payload(Event.new(event_hash["type"], event_hash))
 
       @fence_mutex.synchronize do
-        if @fence_test_clock_id && payload_hash["type"] == "test_helpers.test_clock.deleted" && payload_hash.dig(
+        if @fence_test_clock_id && event_hash["type"] == "test_helpers.test_clock.deleted" && event_hash.dig(
           "data", "object", "id"
         ) == @fence_test_clock_id
-          @last_fence_event_created = payload_hash["created"]
+          @last_fence_event_created = event_hash["created"]
           @fence_signaled = true
           @fence_cond_var.signal
         end

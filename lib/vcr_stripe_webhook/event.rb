@@ -2,18 +2,26 @@
 
 module VcrStripeWebhook
   class Event
-    attr_reader :type, :value
+    attr_reader :type
 
-    def initialize(type, value)
+    def initialize(type, event_hash)
       @type = type
-      @value = value
+      @event_hash = event_hash
     end
 
     def to_h
       {
         "type" => type,
-        "value" => value
+        "value" => as_hash
       }
+    end
+
+    def as_hash
+      @event_hash
+    end
+
+    def as_json
+      @json = JSON.generate(@event_hash)
     end
 
     class << self
