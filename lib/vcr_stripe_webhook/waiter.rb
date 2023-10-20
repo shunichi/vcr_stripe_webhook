@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module VcrStripeWebhook
   class ProcWaiter
-    def initialize(proc)
+    def initialize(_proc)
       @proc
     end
 
@@ -8,7 +10,7 @@ module VcrStripeWebhook
       @proc.call(events)
     end
 
-    def timeout_message(events, recording:)
+    def timeout_message(_events, recording:)
       events_words = recording ? "received events" : "the recorded events"
       "wait_until proc does not return true with #{events_words}."
     end
@@ -28,9 +30,9 @@ module VcrStripeWebhook
 
     def timeout_message(events, recording:)
       type_set = events.map(&:type).to_set
-      missing_event_types = event_types.select { |type| !type_set.member?(type) }
+      missing_event_types = event_types.reject { |type| type_set.member?(type) }
       events_words = recording ? "Received events" : "The recorded events"
-      types_words = missing_event_types.map { |type| "'#{type}'" }.join(', ')
+      types_words = missing_event_types.map { |type| "'#{type}'" }.join(", ")
       "#{events_words} don't contain #{types_words}."
     end
   end

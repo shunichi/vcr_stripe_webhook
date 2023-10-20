@@ -68,6 +68,7 @@ module VcrStripeWebhook
         end
 
         return target_events if finished
+
         if Time.now - start_time > timeout
           message = waiter.timeout_message(target_events, recording: true)
           raise EventWaitTimeout, message

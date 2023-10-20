@@ -20,7 +20,7 @@ RSpec.configure do |config|
 
   FileUtils.mkdir_p "log"
 
-  Stripe.api_key = ENV.fetch("VCR_STRIPE_WEBHOOK_API_KEY", 'sk_test_dummy')
+  Stripe.api_key = ENV.fetch("VCR_STRIPE_WEBHOOK_API_KEY", "sk_test_dummy")
 
   VCR.configure do |c|
     c.cassette_library_dir = "spec/vcr"

@@ -37,9 +37,7 @@ module VcrStripeWebhook
 
     def receive_webhook_events(event_types: nil, wait_until: nil, timeout: configuration.timeout, &block)
       raise "No event cassete inserted." if current_event_cassette.nil?
-      if event_types.nil? && wait_until.nil?
-        raise "event_types or wait_until must be passed as an argument."
-      end
+      raise "event_types or wait_until must be passed as an argument." if event_types.nil? && wait_until.nil?
 
       waiter =
         if event_types

@@ -32,14 +32,15 @@ RSpec.describe VcrStripeWebhook do
       VcrStripeWebhook.use_cassette("create_customer_and_attach_payment_method") do |_vcr_cassette|
         stripe_customer = nil
 
-        webhook_events = VcrStripeWebhook.receive_webhook_events(event_types: %w[customer.created payment_method.attached]) do
+        webhook_events = VcrStripeWebhook.receive_webhook_events(event_types: %w[customer.created
+                                                                                 payment_method.attached]) do
           customer_params = {
             email: "test-user@example.com",
             name: "test-user"
           }
           stripe_customer = Stripe::Customer.create(customer_params)
 
-          stripe_payment_method = Stripe::PaymentMethod.retrieve('pm_card_visa')
+          stripe_payment_method = Stripe::PaymentMethod.retrieve("pm_card_visa")
           stripe_payment_method.attach(customer: stripe_customer.id)
         end
 
