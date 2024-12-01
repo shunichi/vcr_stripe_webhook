@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vcr_stripe_webhook (0.2.1)
+    vcr_stripe_webhook (0.3.0)
       stripe (>= 9.0)
       vcr (~> 6.0)
 
