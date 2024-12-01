@@ -12,7 +12,7 @@ Record and replay Stripe webhooks during integration test.
 Add this gem to Gemfile.
 
 ```
-gem 'vcr_stripe_webhook', github: 'shunichi/vcr_stripe_webhook'
+gem 'vcr_stripe_webhook'
 ```
 
 ## Usage
