@@ -29,6 +29,9 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "stripe", "~> 9.0"
+  spec.add_dependency "stripe", ">= 9.0"
   spec.add_dependency "vcr", "~> 6.0"
+
+  spec.add_development_dependency "dotenv", "~> 3.0"
+  spec.add_development_dependency "webmock", "~> 3.0"
 end

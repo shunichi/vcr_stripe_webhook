@@ -8,18 +8,18 @@ http_interactions:
       string: email=test-user%40example.com&name=test-user
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/9.3.0
+      - Stripe/v1 RubyBindings/12.6.0
       Authorization:
       - Bearer <STRIPE_API_KEY>
       Content-Type:
       - application/x-www-form-urlencoded
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
-        version 6.1.55-1-MANJARO (builduser@fv-az956-768) (gcc (GCC) 13.2.1 20230801,
-        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Sat Sep 23 12:13:56 UTC
-        2023","hostname":"d1"}'
+      - '{"bindings_version":"12.6.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.10.13-3-MANJARO (builduser@fv-az1246-770) (gcc (GCC) 14.2.1 20240910,
+        GNU ld (GNU Binutils) 2.43.0) #1 SMP PREEMPT_DYNAMIC Tue Oct  8 03:24:49 UTC
+        2024","hostname":"d1"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -32,7 +32,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 13 Oct 2023 14:26:07 GMT
+      - Sun, 01 Dec 2024 02:58:39 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -42,51 +42,64 @@ http_interactions:
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
-      - GET,HEAD,PUT,PATCH,POST,DELETE
+      - GET, HEAD, PUT, PATCH, POST, DELETE
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
       Access-Control-Max-Age:
       - '300'
       Cache-Control:
       - no-cache, no-store
-      Content-Security-Policy-Report-Only:
-      - report-uri /csp-report?p=v1%2Fcustomers; block-all-mixed-content; default-src
-        'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; img-src
-        'self'; script-src 'self' 'report-sample'; style-src 'self'
+      Content-Security-Policy:
+      - report-uri https://q.stripe.com/csp-report?p=v1%2Fcustomers; block-all-mixed-content;
+        default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
       Idempotency-Key:
-      - 9a70277a-7fae-4e28-906b-cb57843b3530
+      - f5de3b7e-2aa8-425e-b4cb-09e9847515fb
       Original-Request:
-      - req_aSGa7AEn7lnTSW
+      - req_F7jEozmKbtodHj
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
       Request-Id:
-      - req_aSGa7AEn7lnTSW
+      - req_F7jEozmKbtodHj
       Stripe-Should-Retry:
       - 'false'
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       Vary:
       - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
       X-Stripe-Routing-Context-Priority-Tier:
       - api-testmode
+      X-Wc:
+      - A
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |-
         {
-          "id": "cus_OoP7qqME1wvhw5",
+          "id": "cus_RJgkocsnNqLA6l",
           "object": "customer",
           "address": null,
           "balance": 0,
-          "created": 1697207167,
+          "created": 1733021919,
           "currency": null,
           "default_source": null,
           "delinquent": false,
           "description": null,
           "discount": null,
           "email": "test-user@example.com",
-          "invoice_prefix": "ADEA5F6F",
+          "invoice_prefix": "38C92A82",
           "invoice_settings": {
             "custom_fields": null,
             "default_payment_method": null,
@@ -103,29 +116,29 @@ http_interactions:
           "tax_exempt": "none",
           "test_clock": null
         }
-  recorded_at: Fri, 13 Oct 2023 14:26:07 GMT
+  recorded_at: Sun, 01 Dec 2024 02:58:39 GMT
 - request:
     method: delete
-    uri: https://api.stripe.com/v1/customers/cus_OoP7qqME1wvhw5
+    uri: https://api.stripe.com/v1/customers/cus_RJgkocsnNqLA6l
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/9.3.0
+      - Stripe/v1 RubyBindings/12.6.0
       Authorization:
       - Bearer <STRIPE_API_KEY>
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_aSGa7AEn7lnTSW","request_duration_ms":378}}'
+      - '{"last_request_metrics":{"request_id":"req_F7jEozmKbtodHj","request_duration_ms":347}}'
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
-        version 6.1.55-1-MANJARO (builduser@fv-az956-768) (gcc (GCC) 13.2.1 20230801,
-        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Sat Sep 23 12:13:56 UTC
-        2023","hostname":"d1"}'
+      - '{"bindings_version":"12.6.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.10.13-3-MANJARO (builduser@fv-az1246-770) (gcc (GCC) 14.2.1 20240910,
+        GNU ld (GNU Binutils) 2.43.0) #1 SMP PREEMPT_DYNAMIC Tue Oct  8 03:24:49 UTC
+        2024","hostname":"d1"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -138,7 +151,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 13 Oct 2023 14:26:08 GMT
+      - Sun, 01 Dec 2024 02:58:40 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -148,60 +161,74 @@ http_interactions:
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
-      - GET,HEAD,PUT,PATCH,POST,DELETE
+      - GET, HEAD, PUT, PATCH, POST, DELETE
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
       Access-Control-Max-Age:
       - '300'
       Cache-Control:
       - no-cache, no-store
-      Content-Security-Policy-Report-Only:
-      - report-uri /csp-report?p=v1%2Fcustomers%2F%3Acustomer; block-all-mixed-content;
-        default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';
-        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'
+      Content-Security-Policy:
+      - report-uri https://q.stripe.com/csp-report?p=v1%2Fcustomers%2F%3Acustomer;
+        block-all-mixed-content; default-src 'none'; base-uri 'none'; form-action
+        'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample';
+        style-src 'self'
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
       Request-Id:
-      - req_BM7vo1vzxpFFLg
+      - req_zoKq3GFuZUrPIb
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       Vary:
       - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
       X-Stripe-Routing-Context-Priority-Tier:
       - api-testmode
+      X-Wc:
+      - A
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |-
         {
-          "id": "cus_OoP7qqME1wvhw5",
+          "id": "cus_RJgkocsnNqLA6l",
           "object": "customer",
           "deleted": true
         }
-  recorded_at: Fri, 13 Oct 2023 14:26:08 GMT
+  recorded_at: Sun, 01 Dec 2024 02:58:40 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/test_helpers/test_clocks
     body:
       encoding: UTF-8
-      string: frozen_time=1697207168&name=vcr_sw_fence_1697207168_oWe7n8CPvf8v0udP
+      string: frozen_time=1733021920&name=vcr_sw_fence_1733021920_O30X2vYUtTuYWP1C
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/9.3.0
+      - Stripe/v1 RubyBindings/12.6.0
       Authorization:
       - Bearer <STRIPE_API_KEY>
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_BM7vo1vzxpFFLg","request_duration_ms":418}}'
+      - '{"last_request_metrics":{"request_id":"req_zoKq3GFuZUrPIb","request_duration_ms":341}}'
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
-        version 6.1.55-1-MANJARO (builduser@fv-az956-768) (gcc (GCC) 13.2.1 20230801,
-        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Sat Sep 23 12:13:56 UTC
-        2023","hostname":"d1"}'
+      - '{"bindings_version":"12.6.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.10.13-3-MANJARO (builduser@fv-az1246-770) (gcc (GCC) 14.2.1 20240910,
+        GNU ld (GNU Binutils) 2.43.0) #1 SMP PREEMPT_DYNAMIC Tue Oct  8 03:24:49 UTC
+        2024","hostname":"d1"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -214,81 +241,96 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 13 Oct 2023 14:26:08 GMT
+      - Sun, 01 Dec 2024 02:58:40 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '264'
+      - '288'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
-      - GET,HEAD,PUT,PATCH,POST,DELETE
+      - GET, HEAD, PUT, PATCH, POST, DELETE
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
       Access-Control-Max-Age:
       - '300'
       Cache-Control:
       - no-cache, no-store
-      Content-Security-Policy-Report-Only:
-      - report-uri /csp-report?p=v1%2Ftest_helpers%2Ftest_clocks; block-all-mixed-content;
-        default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';
-        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'
+      Content-Security-Policy:
+      - report-uri https://q.stripe.com/csp-report?p=v1%2Ftest_helpers%2Ftest_clocks;
+        block-all-mixed-content; default-src 'none'; base-uri 'none'; form-action
+        'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample';
+        style-src 'self'
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
       Idempotency-Key:
-      - adf28984-f4d9-41d8-a7e4-8e1f95576c3c
+      - 3e8e8f6a-f57c-48b6-818c-6b8774157df9
       Original-Request:
-      - req_0ScIJW7cuOzxnS
+      - req_HyfglgBQ6JjJh9
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
       Request-Id:
-      - req_0ScIJW7cuOzxnS
+      - req_HyfglgBQ6JjJh9
       Stripe-Should-Retry:
       - 'false'
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       Vary:
       - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
       X-Stripe-Routing-Context-Priority-Tier:
       - api-testmode
+      X-Wc:
+      - A
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |-
         {
-          "id": "clock_1O0mJYGNdl6NdahfpTq4Va8T",
+          "id": "clock_1QR3MqDXtQamuGa22UtgG7lu",
           "object": "test_helpers.test_clock",
-          "created": 1697207168,
-          "deletes_after": 1699799168,
-          "frozen_time": 1697207168,
+          "created": 1733021920,
+          "deletes_after": 1735613920,
+          "frozen_time": 1733021920,
           "livemode": false,
-          "name": "vcr_sw_fence_1697207168_oWe7n8CPvf8v0udP",
-          "status": "ready"
+          "name": "vcr_sw_fence_1733021920_O30X2vYUtTuYWP1C",
+          "status": "ready",
+          "status_details": {}
         }
-  recorded_at: Fri, 13 Oct 2023 14:26:08 GMT
+  recorded_at: Sun, 01 Dec 2024 02:58:40 GMT
 - request:
     method: delete
-    uri: https://api.stripe.com/v1/test_helpers/test_clocks/clock_1O0mJYGNdl6NdahfpTq4Va8T
+    uri: https://api.stripe.com/v1/test_helpers/test_clocks/clock_1QR3MqDXtQamuGa22UtgG7lu
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/9.3.0
+      - Stripe/v1 RubyBindings/12.6.0
       Authorization:
       - Bearer <STRIPE_API_KEY>
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_0ScIJW7cuOzxnS","request_duration_ms":228}}'
+      - '{"last_request_metrics":{"request_id":"req_HyfglgBQ6JjJh9","request_duration_ms":261}}'
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"9.3.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
-        version 6.1.55-1-MANJARO (builduser@fv-az956-768) (gcc (GCC) 13.2.1 20230801,
-        GNU ld (GNU Binutils) 2.41.0) #1 SMP PREEMPT_DYNAMIC Sat Sep 23 12:13:56 UTC
-        2023","hostname":"d1"}'
+      - '{"bindings_version":"12.6.0","lang":"ruby","lang_version":"3.0.6 p216 (2023-03-30)","platform":"x86_64-linux","engine":"ruby","publisher":"stripe","uname":"Linux
+        version 6.10.13-3-MANJARO (builduser@fv-az1246-770) (gcc (GCC) 14.2.1 20240910,
+        GNU ld (GNU Binutils) 2.43.0) #1 SMP PREEMPT_DYNAMIC Tue Oct  8 03:24:49 UTC
+        2024","hostname":"d1"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -301,7 +343,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 13 Oct 2023 14:26:08 GMT
+      - Sun, 01 Dec 2024 02:58:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -311,37 +353,50 @@ http_interactions:
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
-      - GET,HEAD,PUT,PATCH,POST,DELETE
+      - GET, HEAD, PUT, PATCH, POST, DELETE
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
       Access-Control-Max-Age:
       - '300'
       Cache-Control:
       - no-cache, no-store
-      Content-Security-Policy-Report-Only:
-      - report-uri /csp-report?p=v1%2Ftest_helpers%2Ftest_clocks%2F%3Atest_clock;
+      Content-Security-Policy:
+      - report-uri https://q.stripe.com/csp-report?p=v1%2Ftest_helpers%2Ftest_clocks%2F%3Atest_clock;
         block-all-mixed-content; default-src 'none'; base-uri 'none'; form-action
         'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample';
         style-src 'self'
+      Cross-Origin-Opener-Policy-Report-Only:
+      - same-origin; report-to="coop"
+      Report-To:
+      - '{"group":"coop","max_age":8640,"endpoints":[{"url":"https://q.stripe.com/coop-report"}],"include_subdomains":true}'
+      Reporting-Endpoints:
+      - coop="https://q.stripe.com/coop-report"
       Request-Id:
-      - req_iyWoXDjOYk7zYg
+      - req_njshzl5GLZIBlI
       Stripe-Version:
-      - '2023-08-16'
+      - '2024-06-20'
       Vary:
       - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Stripe-Priority-Routing-Enabled:
+      - 'true'
       X-Stripe-Routing-Context-Priority-Tier:
       - api-testmode
+      X-Wc:
+      - A
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |-
         {
-          "id": "clock_1O0mJYGNdl6NdahfpTq4Va8T",
+          "id": "clock_1QR3MqDXtQamuGa22UtgG7lu",
           "object": "test_helpers.test_clock",
           "deleted": true
         }
-  recorded_at: Fri, 13 Oct 2023 14:26:08 GMT
-recorded_with: VCR 6.2.0
+  recorded_at: Sun, 01 Dec 2024 02:58:41 GMT
+recorded_with: VCR 6.3.1

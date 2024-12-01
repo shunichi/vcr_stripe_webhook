@@ -2,24 +2,24 @@
 events:
 - type: customer.created
   value:
-    id: evt_1O0mJXGNdl6NdahfkgnCsxtJ
+    id: evt_1QR3MpDXtQamuGa2xbejfans
     object: event
-    api_version: '2023-08-16'
-    created: 1697207167
+    api_version: 2024-11-20.acacia
+    created: 1733021919
     data:
       object:
-        id: cus_OoP7qqME1wvhw5
+        id: cus_RJgkocsnNqLA6l
         object: customer
         address:
         balance: 0
-        created: 1697207167
+        created: 1733021919
         currency:
         default_source:
         delinquent: false
         description:
         discount:
         email: test-user@example.com
-        invoice_prefix: ADEA5F6F
+        invoice_prefix: 38C92A82
         invoice_settings:
           custom_fields:
           default_payment_method:
@@ -37,8 +37,8 @@ events:
     livemode: false
     pending_webhooks: 2
     request:
-      id: req_aSGa7AEn7lnTSW
-      idempotency_key: 9a70277a-7fae-4e28-906b-cb57843b3530
+      id: req_F7jEozmKbtodHj
+      idempotency_key: f5de3b7e-2aa8-425e-b4cb-09e9847515fb
     type: customer.created
 waits:
 - start: 0

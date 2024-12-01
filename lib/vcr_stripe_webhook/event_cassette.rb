@@ -17,7 +17,7 @@ module VcrStripeWebhook
       if recording
         @data = Data.new
       else
-        @data = Data.deserialze(path)
+        @data = Data.deserialize(path)
         @wait_counter = 0
       end
     end
@@ -144,7 +144,7 @@ module VcrStripeWebhook
       end
 
       class << self
-        def deserialze(path)
+        def deserialize(path)
           yaml = YAML.safe_load_file(path, permitted_classes: [])
           events = yaml["events"].map { |event_hash| Event.from_hash(event_hash) }
           waits = yaml["waits"].map { |hash| Wait.from_hash(hash) }
