@@ -29,7 +29,7 @@ Use `VcrStripeWebhook.use_cassette` instead of `VCR.use_cassette`.
 VcrStripeWebhook.use_cassette('create_customer') do |vcr_cassette|
   stripe_customer = nil
 
-  # Get webhook payload from Stripe server or current cassette
+  # Get a webhook payload from Stripe server or current cassette
   webhook_event = VcrStripeWebhook.receive_webhook_event('customer.created') do
     customer_params = {
       email: 'test-user@example.com',
@@ -42,7 +42,7 @@ VcrStripeWebhook.use_cassette('create_customer') do |vcr_cassette|
   post your_stripe_webhook_path, params: webhook_event.as_json,
     headers: { 'Content-Type: application/json' }
 
-  # Insert assertion here
+  # Insert assertions here
 ensure
   stripe_customer&.delete
 end
@@ -50,6 +50,37 @@ end
 
 On the first run, this code records HTTP requests/responses with VCR gem and additionally records received webhooks with vcr_stripe_webhook gem.
 On the second run or later, it replays the recorded requests, responses and webhooks.
+
+If you want to receive multiple webhook events, use `receive_webhook_events`.
+
+```ruby
+VcrStripeWebhook.use_cassette("create_customer_and_attach_payment_method") do |vcr_cassette|
+  stripe_customer = nil
+
+  # Get webhook payloads from Stripe server or current cassette
+  webhook_events = VcrStripeWebhook.receive_webhook_events(
+    event_types: %w[customer.created payment_method.attached]) do
+
+    customer_params = {
+      email: "test-user@example.com",
+      name: "test-user"
+    }
+    stripe_customer = Stripe::Customer.create(customer_params)
+
+    stripe_payment_method = Stripe::PaymentMethod.retrieve("pm_card_visa")
+    stripe_payment_method.attach(customer: stripe_customer.id)
+  end
+
+  webhook_events.each do |webhook_event|
+    post your_stripe_webhook_path, params: webhook_event.as_json,
+      headers: { 'Content-Type: application/json' }
+  end
+
+  # Insert assertions here
+ensure
+  stripe_customer&.delete
+end
+```
 
 ## Development
 
