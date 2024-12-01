@@ -8,9 +8,3 @@ gemspec
 gem "rake"
 gem "rspec"
 gem "rubocop"
-
-gem "stripe"
-gem "vcr"
-gem "webmock"
-
-gem "dotenv"

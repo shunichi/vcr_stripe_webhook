@@ -48,7 +48,7 @@ module VcrStripeWebhook
       @started = false
     end
 
-    def use_cassete(cassette)
+    def use_cassette(cassette)
       if cassette.recording?
         start
         logger.info "Using cassette: #{cassette.name}"

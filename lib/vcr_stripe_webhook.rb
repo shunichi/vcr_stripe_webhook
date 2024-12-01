@@ -28,7 +28,7 @@ module VcrStripeWebhook
     def use_cassette(name, options = {}, &block)
       VCR.use_cassette(name, options) do |vcr_cassette|
         @current_event_cassette = EventCassette.new(name, vcr_cassette, vcr_cassette.recording?)
-        EventReceiver.instance.use_cassete(@current_event_cassette, &block)
+        EventReceiver.instance.use_cassette(@current_event_cassette, &block)
         @current_event_cassette.serialize if @current_event_cassette.recording?
       ensure
         @current_event_cassette = nil
@@ -36,7 +36,7 @@ module VcrStripeWebhook
     end
 
     def receive_webhook_events(event_types: nil, wait_until: nil, timeout: configuration.timeout, &block)
-      raise "No event cassete inserted." if current_event_cassette.nil?
+      raise "No event cassette inserted." if current_event_cassette.nil?
       raise "event_types or wait_until must be passed as an argument." if event_types.nil? && wait_until.nil?
 
       waiter =
